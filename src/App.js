@@ -4,6 +4,7 @@ import "./App.css";
 import { Header } from "./components";
 import { Home, Cart } from "./pages";
 import { Route } from "react-router-dom";
+import SlideCart from "./components/SlideCart";
 
 function App() {
   const [products, setproducts] = React.useState([]);
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/Cart" component={Cart}></Route>
         </div>
       </div>
+      <SlideCart></SlideCart>
     </div>
   );
 }

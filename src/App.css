@@ -757,3 +757,32 @@ a {
   font-weight: 600;
   font-size: 18px;
 }
+/* Бокова панель */
+.sidebar-container {
+  background-color: inherit;
+  min-width: 30%;
+  min-height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translateX(102%);
+  transition: 0.4s;
+  z-index: 199;
+  text-align: center;
+  padding: 5px;
+  -webkit-box-shadow: -9px 3px 8px 1px rgba(34, 60, 80, 0.19);
+  -moz-box-shadow: -9px 3px 8px 1px rgba(34, 60, 80, 0.19);
+  box-shadow: -9px 3px 8px 1px rgba(34, 60, 80, 0.19);
+}
+.sidebar-container h1 {
+  margin-top: 30px;
+  font-size: calc(8px + 30 * (100vw / 1280));
+}
+.sidebar-container-active {
+  transform: translateX(0%);
+}
+.wrapper-sidebar-active {
+  transform: translateX(-30%);
+  transition: 0.5s;
+  filter: blur(2.3px);
+}

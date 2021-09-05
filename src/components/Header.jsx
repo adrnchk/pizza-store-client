@@ -19,9 +19,8 @@ function Header(props) {
           <p>(+380) 99-648-24-62</p>
           <small>дзвінки безкоштовні на території України</small>
         </div>
-        <Link to="/cart">
-          <HeaderCart />
-        </Link>
+
+        <HeaderCart />
       </div>
     </div>
   );
