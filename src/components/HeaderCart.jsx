@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPizza, decPizza, deletePizza, incPizza } from "../redux/actions";
 
 function HeaderCart(props) {
+  const cartReducer = useSelector((state) => state.cartReducer);
   return (
     <div
       onClick={() => {
@@ -10,11 +13,12 @@ function HeaderCart(props) {
         document
           .querySelector(".wrapper")
           .classList?.toggle("wrapper-sidebar-active");
+        document.querySelector("body").classList?.toggle("noscroll");
       }}
       className="header__cart"
     >
       <div className="button button--cart">
-        <span>520 грн</span>
+        <span>{cartReducer.orderPrice} грн</span>
         <div className="button__delimiter"></div>
         <svg
           width="18"
@@ -45,7 +49,10 @@ function HeaderCart(props) {
             strokeLinejoin="round"
           />
         </svg>
-        <span>3</span>
+
+        {cartReducer?.productCount != 0 && (
+          <span>{cartReducer.productCount}</span>
+        )}
       </div>
     </div>
   );

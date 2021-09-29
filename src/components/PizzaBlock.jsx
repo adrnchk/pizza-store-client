@@ -1,8 +1,14 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPizza, decPizza, deletePizza, incPizza } from "../redux/actions";
 
 function PizzaBlock(props) {
   const [type, settype] = React.useState(null);
   const [size, setsize] = React.useState(0);
+
+  const dispatch = useDispatch();
+  const cartReducer = useSelector((state) => state.cartReducer);
+
   const changesize = (index) => {
     setsize(index);
   };
@@ -13,15 +19,28 @@ function PizzaBlock(props) {
     if (props.types[0] === 0) settype(0);
     if (props.types[0] === 1) settype(1);
   }, []);
+
+  const addPizzaToCart = () => {
+    const newItem = {
+      id: props.id,
+      category: props.category,
+      size: props.sizes[size],
+      type: type === 0 ? "традиційна" : "тонка",
+      image: props.image,
+      name: props.name,
+      price: props.price,
+      count: 1,
+    };
+    dispatch(addPizza(newItem));
+  };
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={props.image} alt="Pizza" />
 
       <h4 className="pizza-block__title">{props.name}</h4>
-      <p className="pizza-block__info">
-        Томаты, сладкий перец, красный лук, соус песто, митболы из говядины,
-        моцарелла, томатный соус (600гр.)
-      </p>
+      <div className="pizza-block__info">
+        <p>{props.desc}</p>
+      </div>
       <div className="pizza-block__selector">
         {props.types && (
           <ul>
@@ -33,7 +52,7 @@ function PizzaBlock(props) {
                     : ""
                   : "disabled"
               }
-              onClick={props.types.includes(0) ? () => changetype(0) : ""}
+              onClick={props.types.includes(0) ? () => changetype(0) : () => {}}
             >
               тонке
             </li>
@@ -45,7 +64,7 @@ function PizzaBlock(props) {
                     : ""
                   : "disabled"
               }
-              onClick={props.types.includes(1) ? () => changetype(1) : ""}
+              onClick={props.types.includes(1) ? () => changetype(1) : () => {}}
             >
               традиційне
             </li>
@@ -56,7 +75,7 @@ function PizzaBlock(props) {
           <ul>
             {props.sizes.map((name, index) => (
               <li
-                key={`$name_$index`}
+                key={name}
                 className={size === index ? "active" : ""}
                 onClick={() => changesize(index)}
               >
@@ -68,7 +87,10 @@ function PizzaBlock(props) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{props.price} грн</div>
-        <div className="button button--outline button--add">
+        <div
+          onClick={addPizzaToCart}
+          className="button button--outline button--add"
+        >
           <svg
             width="10"
             height="10"
@@ -82,7 +104,7 @@ function PizzaBlock(props) {
             />
           </svg>
           <span>Додати</span>
-          <i>2</i>
+          {cartReducer?.productCount != 0 && <i>{cartReducer.productCount}</i>}
         </div>
       </div>
     </div>
