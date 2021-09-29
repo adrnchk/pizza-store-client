@@ -3,9 +3,18 @@
 This project is a model of web store. 
 ## Status: in progress 75%...
 
-## To INSTALL the project clone it on your local computer, than run script "npm install". You need to have node.js (v14.17.5) installed on your local mashine.
+## Technology stack
+React.js
+React-router-dom
+React-redux
+Redux
+Axios
 
-## To RUN the project use "npm start"
+### To INSTALL the project 
+clone it on your local computer, than run script "npm install". You need to have node.js (v14.17.5) installed on your local mashine.
+
+### To RUN the project 
+use "npm start"
 
 ## About the project
 
