@@ -4,10 +4,15 @@ This project is a model of web store.
 ## Status: in progress 75%...
 
 ## Technology stack
+
 React.js
+
 React-router-dom
+
 React-redux
+
 Redux
+
 Axios
 
 ### To INSTALL the project 
